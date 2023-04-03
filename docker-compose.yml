@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+
+  proxy:
+    build:
+      context: ./build
+      dockerfile: nginx.dockerfile
+      args:
+        - NGINX_VERSION=${NGINX_VERSION}
+        - EMAIL=${CERT_EMAIL}
+    image: reverse_proxy
+    env_file:
+      - ./.env
+    volumes:
+      - ./index.html:/var/www/index.html:ro
+      - ./certs:/certs:ro
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+      - "8443:8443"
+      - "8082:8082"
+      - "8445:8445"
+    command: /scripts/run.sh
+    # depends_on:
+    #   - service
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
