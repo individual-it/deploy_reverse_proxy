@@ -43,12 +43,9 @@ fi
     ${ACTION} ${STAGING} \
     $acme_domains \
     --nginx \
-    --cert-file /letsencrypt_certs/cert.pem  \
-    --key-file /letsencrypt_certs/key.pem  \
+    --cert-file /etc/ssl/certs/cert.pem  \
+    --key-file /etc/ssl/private/key.pem  \
     --reloadcmd "service nginx force-reload"
-
-ln -sf /letsencrypt_certs/cert.pem /etc/ssl/certs/cert.pem
-ln -sf /letsencrypt_certs/key.pem /etc/ssl/private/key.pem
 
 /scripts/create_configs.sh
 

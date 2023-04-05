@@ -15,7 +15,6 @@ services:
     volumes:
       - ./index.html:/var/www/index.html:ro
       - ./certs:/certs:ro
-      - cert_volume:/letsencrypt_certs
     ports:
       - "80:80"
       - "443:443"
@@ -29,6 +28,3 @@ services:
       driver: "json-file"
       options:
         max-size: "100m"
-
-volumes:
-  cert_volume:
