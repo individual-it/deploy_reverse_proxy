@@ -4,7 +4,7 @@ acme_domains=""
 
 find /etc/nginx/conf.d/ -type f -delete
 
-for prefix in "${DOMAIN_NAME_PREFIXES[@]}"
+for prefix in ${DOMAIN_NAME_PREFIXES[@]}
 do
     domain=""
     http_port=""
@@ -41,7 +41,7 @@ fi
 
 /root/.acme.sh/acme.sh \
     ${ACTION} ${STAGING} \
-    "$acme_domains" \
+    $acme_domains \
     --nginx \
     --cert-file       /etc/ssl/certs/cert.pem  \
     --key-file       /etc/ssl/private/key.pem  \

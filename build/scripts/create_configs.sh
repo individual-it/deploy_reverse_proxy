@@ -2,7 +2,7 @@
 
 find /etc/nginx/conf.d/ -type f -delete
 
-for prefix in "${DOMAIN_NAME_PREFIXES[@]}"
+for prefix in ${DOMAIN_NAME_PREFIXES[@]}
 do
     domain=""
     http_port=""
