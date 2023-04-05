@@ -15,6 +15,7 @@ services:
     volumes:
       - ./index.html:/var/www/index.html:ro
       - ./certs:/certs:ro
+      - cert_volume:/letsencrypt_certs
     ports:
       - "80:80"
       - "443:443"
@@ -23,10 +24,11 @@ services:
       - "8082:8082"
       - "8445:8445"
     command: /scripts/run.sh
-    # depends_on:
-    #   - service
     restart: unless-stopped
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
+
+volumes:
+  cert_volume:
